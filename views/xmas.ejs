@@ -11,7 +11,7 @@
     <h1>Gifts</h1>
     <ul>
         <% gifts.forEach( el => { %>
-            <li class = 'giftItem' data_id = '<%=el._id%>'>
+            <li class = 'giftItem' data-id = '<%=el._id%>'>
                 <span class = '<%= el.completed === true ? 'completed' : 'not'%>'><%= el.gift %></span>
                 <span class = 'del'> Delete </span>
             </li>

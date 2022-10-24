@@ -31,5 +31,27 @@ module.exports = {
         } catch(err) {
             console.log(err)
         }
+    },
+
+    markIncomplete: async (req, res) => {
+        try {
+            await xmas.findOneAndUpdate({_id: req.body.giftIdFromJSFile}, {
+                completed: false
+            })
+            console.log('Marked Incomplete')
+            res.json('Marked Incomplete')
+        } catch(err) {
+            console.log(err)
+        }
+    },
+
+    deleteGift: async (req, res) => {
+        try {
+            await xmas.findOneAndDelete({_id: req.body.giftIdFromJSFile})
+            console.log('Deleted Gift')
+            res.json('Deleted Gift')
+        } catch(err) {
+            console.log(err)
+        }
     }
 }
