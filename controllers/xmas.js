@@ -3,9 +3,9 @@ const xmas = require('../models/xmas')
 module.exports = {
     getGifts: async (req, res) => {
         try {
-            const giftItems = await xmas.find()
-            const giftsLeft = await xmas.countDocuments({completed: false})
-            res.render('xmas.ejs', {gifts: giftItems, left: giftsLeft})
+            const giftItems = await xmas.find({userId:req.user.id})
+            const giftsLeft = await xmas.countDocuments({userId:req.user.id,completed: false})
+            res.render('xmas.ejs', {gifts: giftItems, left: giftsLeft, user:req.user})
         } catch(err) {
             console.log(err)
         }
@@ -13,7 +13,7 @@ module.exports = {
 
     createGift: async (req, res) => {
         try {
-            await xmas.create({gift: req.body.giftItem, completed: false})
+            await xmas.create({gift: req.body.giftItem, completed: false, userId: req.user.id})
             console.log('Gift has been added!')
             res.redirect('/xmas')
         } catch(err) {
