@@ -38,7 +38,7 @@ const User = require('../models/User')
   
   exports.logout = (req, res, next) => {
     req.logout((err) => {
-        if (err) {
+        if (err) {0
             return next(err)
         }
         console.log("User has logged out")

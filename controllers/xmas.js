@@ -2,6 +2,7 @@ const xmas = require('../models/xmas')
 
 module.exports = {
     getGifts: async (req, res) => {
+        console.log(req.user)
         try {
             const giftItems = await xmas.find({userId:req.user.id})
             const giftsLeft = await xmas.countDocuments({userId:req.user.id,completed: false})
